@@ -1,0 +1,93 @@
+<apex:page standardcontroller="Customer_Feedback__c" extensions="CustomerFeedbackExtension" id="fbpage" title="Feedback Form">
+<h1>Feedback Form</h1>
+<apex:form id="fbform" title="Feedback Form">
+    <apex:pageMessages id="errors" />
+    <table>
+        <tr>
+            <td colspan="2">
+            </td>
+        </tr>
+        <tr>
+            <td>Competitor:</td>
+            <td>
+                <apex:selectList id="competitor" value="{!competitor}" size="1" label="">
+                    <apex:selectOptions value="{!competitorOptions}" />
+                    <apex:actionSupport event="onchange" rerender="errors,competitorName,product,price" action="{!showProduct}" /> 
+                </apex:selectList>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <apex:outputPanel id="competitorName" >
+                    <apex:inputText value="{!competitorName}" rendered="{!showName}" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>Product:</td>
+            <td>
+                <apex:selectList id="product" value="{!product}" size="1" label="">
+                    <apex:selectOptions value="{!productOptions}" />
+                    <apex:actionSupport event="onchange" rerender="productName,price" action="{!showProductName}" /> 
+                </apex:selectList>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <apex:outputPanel id="productName" >
+                    <apex:inputText value="{!otherProduct}" rendered="{!showPrdName}" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>
+                <apex:outputPanel id="price">
+                    <apex:inputText value="{!price}" label="" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>Features:</td>
+            <td>
+                <apex:outputPanel id="features">
+                    <apex:inputTextArea value="{!features}" label="" cols="50" rows="5" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>Pros:</td>
+            <td>
+                <apex:outputPanel id="pros">
+                    <apex:inputTextArea value="{!pros}" label="" cols="50" rows="5" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td>Cons:</td>
+            <td>
+                <apex:outputPanel id="cons">
+                    <apex:inputTextArea value="{!cons}" label="" cols="50" rows="5" />
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <apex:commandButton value=" Submit " alt="submit" action="{!save}" rerender="errors" id="btnsubmit" /><!--onclick="validate()" -->
+                <apex:commandButton id="cancel" value=" Cancel " />
+            </td>
+        </tr>
+    </table>
+</apex:form>
+<script type="text/javascript">
+/*function validate() {
+    if (document.getElementById('fbpage:fbform:competitor').value == '') {
+        alert('Please select Competitor');
+        return false;
+    }
+    return false;
+}*/
+</script>
+</apex:page>
